@@ -41,13 +41,16 @@ class OracleOfBacon
       # convert all of these into a generic OracleOfBacon::NetworkError,
       #  but keep the original error message
       # your code here
+      raise NetworkError.new(e)
     end
     # your code here: create the OracleOfBacon::Response object
+    Response.new(xml)
   end
 
   def make_uri_from_arguments
     # your code here: set the @uri attribute to properly-escaped URI
     #   constructed from the @from, @to, @api_key arguments
+    @uri = "http://oracleofbacon.org/cgi-bin/xml?p=#{@api_key}&a=#{CGI.escape(@from)}&b=#{CGI.escape(@to)}"
   end
 
   class Response
